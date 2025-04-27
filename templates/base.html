@@ -1,0 +1,22 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Django Boilerplate{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'output.css' %}" rel="stylesheet">
+    <script src="{% static 'js/htmx.js' %}" defer></script>
+    <script src="{% static 'js/alpine.js' %}" defer></script>
+    {% block extra_head %}{% endblock %}
+</head>
+<body class="flex flex-col min-h-screen bg-base-200" x-data="{ theme: localStorage.getItem('theme') || 'default' }" x-init="() => { document.documentElement.setAttribute('data-theme', theme); }" x-effect="localStorage.setItem('theme', theme); document.documentElement.setAttribute('data-theme', theme)">
+    {% include "navbar.html" %}
+    <main class="flex-1 w-full max-w-5xl mx-auto px-4 py-6">
+        {% block content %}{% endblock %}
+    </main>
+    {% include "footer.html" %}
+    {% block extra_body %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card w-full max-w-md shadow-xl bg-base-100 mx-auto">
+  <div class="card-body items-center">
+    <h2 class="card-title mb-4">Logout</h2>
+    <p class="mb-4">Sei sicuro di voler uscire?</p>
+    <form method="post" action="{% url 'account_logout' %}">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary">Logout</button>
+      <a href="/" class="btn btn-ghost ml-2">Annulla</a>
+    </form>
+  </div>
+</div>
+{% endblock %}
