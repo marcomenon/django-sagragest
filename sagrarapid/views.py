@@ -90,15 +90,25 @@ def rapid_move_row(request):
     interface_obj = None
     event = None
     full_interface = None
+    categoryevents = []
+    productevents = []
     if event_id:
         try:
             event = Event.objects.get(pk=event_id)
             interface_obj = RapidInterface.get_by_event(event)
             if interface_obj:
                 full_interface = RapidInterface.objects.to_json_full_by_event(event)
+                categoryevents = CategoryEvent.objects.filter(event=event)
+                productevents = ProductEvent.objects.filter(event=event, category=interface_obj.category_event)
         except Event.DoesNotExist:
             interface_obj = None
-    return render(request, "sagrarapid/dashboard.html#container", {"interface": interface_obj, "event": event, "full_interface": full_interface})
+    return render(request, "sagrarapid/dashboard.html#container", {
+        "interface": interface_obj,
+        "event": event,
+        "full_interface": full_interface,
+        "categoryevents": categoryevents,
+        "productevents": productevents,
+    })
 
 @authenticated_required
 @require_POST
@@ -124,15 +134,25 @@ def rapid_move_element(request):
     interface_obj = None
     event = None
     full_interface = None
+    categoryevents = []
+    productevents = []
     if event_id:
         try:
             event = Event.objects.get(pk=event_id)
             interface_obj = RapidInterface.get_by_event(event)
             if interface_obj:
                 full_interface = RapidInterface.objects.to_json_full_by_event(event)
+                categoryevents = CategoryEvent.objects.filter(event=event)
+                productevents = ProductEvent.objects.filter(event=event, category=interface_obj.category_event)
         except Event.DoesNotExist:
             interface_obj = None
-    return render(request, "sagrarapid/dashboard.html#container", {"interface": interface_obj, "event": event, "full_interface": full_interface})
+    return render(request, "sagrarapid/dashboard.html#container", {
+        "interface": interface_obj,
+        "event": event,
+        "full_interface": full_interface,
+        "categoryevents": categoryevents,
+        "productevents": productevents,
+    })
 
 @require_POST
 @authenticated_required
@@ -149,15 +169,25 @@ def rapid_add_element(request):
     interface_obj = None
     event = None
     full_interface = None
+    categoryevents = []
+    productevents = []
     if event_id:
         try:
             event = Event.objects.get(pk=event_id)
             interface_obj = RapidInterface.get_by_event(event)
             if interface_obj:
                 full_interface = RapidInterface.objects.to_json_full_by_event(event)
+                categoryevents = CategoryEvent.objects.filter(event=event)
+                productevents = ProductEvent.objects.filter(event=event, category=interface_obj.category_event)
         except Event.DoesNotExist:
             interface_obj = None
-    return render(request, "sagrarapid/dashboard.html#container", {"interface": interface_obj, "event": event, "full_interface": full_interface})
+    return render(request, "sagrarapid/dashboard.html#container", {
+        "interface": interface_obj,
+        "event": event,
+        "full_interface": full_interface,
+        "categoryevents": categoryevents,
+        "productevents": productevents,
+    })
 
 @require_POST
 @authenticated_required
@@ -176,15 +206,25 @@ def rapid_delete_row(request):
     interface_obj = None
     event = None
     full_interface = None
+    categoryevents = []
+    productevents = []
     if event_id:
         try:
             event = Event.objects.get(pk=event_id)
             interface_obj = RapidInterface.get_by_event(event)
             if interface_obj:
                 full_interface = RapidInterface.objects.to_json_full_by_event(event)
+                categoryevents = CategoryEvent.objects.filter(event=event)
+                productevents = ProductEvent.objects.filter(event=event, category=interface_obj.category_event)
         except Event.DoesNotExist:
             interface_obj = None
-    return render(request, "sagrarapid/dashboard.html#container", {"interface": interface_obj, "event": event, "full_interface": full_interface})
+    return render(request, "sagrarapid/dashboard.html#container", {
+        "interface": interface_obj,
+        "event": event,
+        "full_interface": full_interface,
+        "categoryevents": categoryevents,
+        "productevents": productevents,
+    })
 
 @require_POST
 @authenticated_required
@@ -198,15 +238,25 @@ def rapid_delete_element(request):
     interface_obj = None
     event = None
     full_interface = None
+    categoryevents = []
+    productevents = []
     if event_id:
         try:
             event = Event.objects.get(pk=event_id)
             interface_obj = RapidInterface.get_by_event(event)
             if interface_obj:
                 full_interface = RapidInterface.objects.to_json_full_by_event(event)
+                categoryevents = CategoryEvent.objects.filter(event=event)
+                productevents = ProductEvent.objects.filter(event=event, category=interface_obj.category_event)
         except Event.DoesNotExist:
             interface_obj = None
-    return render(request, "sagrarapid/dashboard.html#container", {"interface": interface_obj, "event": event, "full_interface": full_interface})
+    return render(request, "sagrarapid/dashboard.html#container", {
+        "interface": interface_obj,
+        "event": event,
+        "full_interface": full_interface,
+        "categoryevents": categoryevents,
+        "productevents": productevents,
+    })
 
 @require_POST
 @authenticated_required
@@ -236,15 +286,25 @@ def rapid_change_category(request):
         interface_obj = None
         event = None
         full_interface = None
+        categoryevents = []
+        productevents = []
         if event_id:
             try:
                 event = Event.objects.get(pk=event_id)
                 interface_obj = RapidInterface.get_by_event(event)
                 if interface_obj:
                     full_interface = RapidInterface.objects.to_json_full_by_event(event)
+                    categoryevents = CategoryEvent.objects.filter(event=event)
+                    productevents = ProductEvent.objects.filter(event=event, category=interface_obj.category_event)
             except Event.DoesNotExist:
                 interface_obj = None
-        return render(request, "sagrarapid/dashboard.html#container", {"interface": interface_obj, "event": event, "full_interface": full_interface})
+        return render(request, "sagrarapid/dashboard.html#container", {
+            "interface": interface_obj,
+            "event": event,
+            "full_interface": full_interface,
+            "categoryevents": categoryevents,
+            "productevents": productevents,
+        })
     return HttpResponseForbidden("Interfaccia non trovata")
 
 @authenticated_required

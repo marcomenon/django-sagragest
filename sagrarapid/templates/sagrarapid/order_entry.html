@@ -61,7 +61,7 @@
         <h2 class="text-lg font-semibold mb-2">Prodotti disponibili</h2>
         {% if full_interface %}
           {% for row in full_interface.rows %}
-            <div class="flex flex-wrap gap-2 mb-6 justify-center">
+            <div class="flex flex-wrap gap-2 my-8 justify-center">
               {% with row.elements|length as num_buttons %}
                 {% for elem in row.elements %}
                   <button class="btn btn-accent flex-1 min-w-0 w-full break-words py-6" @click="addProduct({{ elem.product_event_id }}, '{{ elem.product_name }}', {{ elem.position }}, {{ elem.row_id|default:'0' }}, {{ elem.price|default:0 }})">
