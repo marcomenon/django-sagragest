@@ -1,7 +1,6 @@
 {% load static %}
-{% load i18n %}
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" data-theme="{{ theme }}">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Django Boilerplate{% endblock %}</title>
@@ -10,13 +9,15 @@
     <script src="{% static 'js/htmx.js' %}" defer></script>
     <script src="{% static 'js/alpine.js' %}" defer></script>
     {% block extra_head %}{% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="flex flex-col min-h-screen bg-base-200" x-data="{ theme: localStorage.getItem('theme') || 'default' }" x-init="() => { document.documentElement.setAttribute('data-theme', theme); }" x-effect="localStorage.setItem('theme', theme); document.documentElement.setAttribute('data-theme', theme)">
-    {% include "navbar.html" %}
-    <main class="flex-1 w-full max-w-5xl mx-auto px-4 py-6">
-        {% block content %}{% endblock %}
-    </main>
-    {% include "footer.html" %}
+<body hx-headers='{"x-csrftoken": "{{ csrf_token }}"}'>
+    <div id="navbar">{% include "navbar.html" %}</div>
+    <div id="main" class="scrollbar-hidden">
+        {% block content %}
+        {% endblock %}
+    </div>
+    </div id="footer">{% include "footer.html" %}</div>
     {% block extra_body %}{% endblock %}
 </body>
 </html>

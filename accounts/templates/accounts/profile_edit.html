@@ -1,16 +1,20 @@
 {% extends 'base.html' %}
 {% load widget_tweaks %}
+{% block title %}Modifica profilo{% endblock %}
+
 {% block content %}
-<div class="card w-full max-w-lg shadow-xl bg-base-100 mx-auto">
+<h1 class="text-center text-2xl md:text-4xl font-bold my-8 md:my-12">Modifica profilo</h1>
+<div class="card w-full max-w-lg shadow-xl bg-base-200 mx-auto">
   <div class="card-body">
-    <h2 class="card-title mb-4">Modifica profilo</h2>
     <form method="post" enctype="multipart/form-data" class="space-y-4">{% csrf_token %}
       {% for field in form %}
         <div>
-          <label class="label">
+          <label class="label mb-2">
             <span class="label-text">{{ field.label }}</span>
           </label>
-          {% if field.field.widget.input_type == "textarea" %}
+          {% if field.name == "theme" %}
+            {% render_field field class="select select-bordered w-full" %}
+          {% elif field.field.widget.input_type == "textarea" %}
             {% render_field field class="textarea textarea-bordered w-full" %}
           {% elif field.field.widget.input_type == "select" %}
             {% render_field field class="select select-bordered w-full" %}
@@ -31,10 +35,10 @@
             {% render_field field class="input input-bordered w-full" %}
           {% endif %}
           {% if field.help_text %}
-            <div class="text-xs text-gray-500">{{ field.help_text }}</div>
+            <div class="text-xs text-gray-500 mt-2">{{ field.help_text }}</div>
           {% endif %}
           {% if field.errors %}
-            <div class="text-error text-sm">{{ field.errors|striptags }}</div>
+            <div class="text-error text-sm mt-2">{{ field.errors|striptags }}</div>
           {% endif %}
         </div>
       {% endfor %}

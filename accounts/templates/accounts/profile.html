@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
+{% block title %}Profilo utente{% endblock %}
+
 {% block content %}
-<div class="card w-full max-w-2xl shadow-xl bg-base-100 mx-auto">
+<h1 class="text-center text-2xl md:text-4xl font-bold my-8 md:my-12">Profilo utente</h1>
+<div class="card w-full max-w-2xl shadow-xl bg-base-200 mx-auto">
   <div class="card-body">
-    <h2 class="card-title mb-4">Profilo utente</h2>
     <div class="overflow-x-auto">
       <table class="table w-full">
         <tbody>
@@ -10,9 +12,8 @@
           <tr><th class="text-right">Email</th><td>{{ user.email }}</td></tr>
           <tr><th class="text-right">Nome</th><td>{{ user.first_name }}</td></tr>
           <tr><th class="text-right">Cognome</th><td>{{ user.last_name }}</td></tr>
-          <tr><th class="text-right">Bio</th><td>{{ user.bio }}</td></tr>
           <tr><th class="text-right">Tema</th><td>{{ user.theme }}</td></tr>
-          <tr><th class="text-right">Stampante</th><td>{{ user.printer }}</td></tr>
+          <tr><th class="text-right">Stampante</th><td>{{ user.personal_printer }}</td></tr>
           <tr><th class="text-right">Staff</th><td>{{ user.is_staff|yesno:"Sì,No" }}</td></tr>
           <tr><th class="text-right">Attivo</th><td>{{ user.is_active|yesno:"Sì,No" }}</td></tr>
           <tr><th class="text-right">Superuser</th><td>{{ user.is_superuser|yesno:"Sì,No" }}</td></tr>

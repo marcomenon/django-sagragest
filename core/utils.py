@@ -48,3 +48,8 @@ def site_name(request):
     except Site.DoesNotExist:
         return {'site_name': 'Django Boilerplate'}
 
+def theme(request):
+    theme = "aqua"
+    if request.user.is_authenticated:
+        theme = request.user.theme or "aqua"
+    return {"theme": theme}

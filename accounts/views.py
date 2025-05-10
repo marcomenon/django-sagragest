@@ -9,12 +9,13 @@ from allauth.account.views import LoginView, LogoutView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, UpdateView
 from django.contrib.auth import get_user_model
+from .forms import UserProfileForm
 
 User = get_user_model()
 
 class CustomLoginView(LoginView):
     template_name = 'accounts/login.html'
-    success_url = reverse_lazy('profile')
+    success_url = reverse_lazy('dashboard')
 
 class CustomLogoutView(LogoutView):
     template_name = 'accounts/logout.html'
@@ -39,7 +40,7 @@ class ProfileView(LoginRequiredMixin, TemplateView):
 
 class ProfileEditView(LoginRequiredMixin, UpdateView):
     model = User
-    fields = ['first_name', 'last_name', 'email', 'bio']
+    form_class = UserProfileForm
     template_name = 'accounts/profile_edit.html'
     success_url = reverse_lazy('profile')
 
