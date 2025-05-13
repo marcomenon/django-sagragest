@@ -1,0 +1,9 @@
+git clone https://github.com/marcomenon/django-sagragest.git sagragest
+cd sagragest
+python3.12 -m venv .venv
+source .venv/bin/activate
+uv pip install -r requirements.txt
+python manage.py check
+python manage.py makemigrations
+python manage.py migrate
+gunicorn core.wsgi:application --bind 0.0.0.0:8000

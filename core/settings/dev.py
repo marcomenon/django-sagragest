@@ -3,7 +3,7 @@ import secrets
 
 # Impostazioni hardcoded per sviluppo
 DEBUG = True
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
 
 try:
     from django.contrib.sites.models import Site
